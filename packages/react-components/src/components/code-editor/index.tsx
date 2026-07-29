@@ -13,7 +13,7 @@ import {
 	history,
 	historyKeymap,
 	indentLess,
-	insertTab,
+	indentMore,
 } from "@codemirror/commands";
 import { json, jsonParseLinter } from "@codemirror/lang-json";
 import { SQLDialect, sql } from "@codemirror/lang-sql";
@@ -1509,7 +1509,7 @@ export function CodeEditor({
 					dropCursor(),
 					EditorState.allowMultipleSelections.of(true),
 					indentOnInput(),
-					indentUnit.of("\t"),
+					indentUnit.of("  "),
 					languageCompartment.current.of([]),
 					bracketMatching(),
 					closeBrackets(),
@@ -1540,7 +1540,7 @@ export function CodeEditor({
 										return moveCompletionSelection(true)(v);
 									}
 									if (v.state.readOnly) return false;
-									return insertTab(v);
+									return indentMore(v);
 								},
 							},
 							{
