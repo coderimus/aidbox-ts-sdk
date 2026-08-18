@@ -37,7 +37,15 @@ pnpm -r run build   # initial build (required for cross-package types)
 3. **Run tests** (currently `aidbox-client` only):
    ```bash
    cd packages/aidbox-client
+   docker compose up --wait   # integration tests need a running Aidbox
    pnpm test
+   ```
+
+   If port 8080 is already taken, set `AIDBOX_PORT` — both the compose file and
+   the tests read it:
+   ```bash
+   AIDBOX_PORT=18080 docker compose up --wait
+   AIDBOX_PORT=18080 pnpm test
    ```
 
 4. **Preview UI changes** with Storybook:
